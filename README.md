@@ -1,4 +1,4 @@
-# LeetCode Company Finder 🏢
+# LeetCode Company Finder
 
 A Chrome extension that shows which companies have asked specific LeetCode problems in their interviews. Never wonder again which companies use that tricky algorithm question!
 
@@ -109,7 +109,7 @@ The extension covers a wide range of companies including:
 - Shopify, Stripe, Square, Zoom
 - And hundreds more...
 
-## 🛠️ Technical Details
+## Technical Details
 
 ### Architecture
 - **Content Script**: Detects LeetCode problems and fetches company data
@@ -179,7 +179,7 @@ leetcode-company-extension/
 └── README.md           # This file
 ```
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
