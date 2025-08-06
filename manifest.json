@@ -1,0 +1,30 @@
+{
+"manifest_version": 3,
+"icons": {
+  "16": "programming.png"
+},
+"name": "LeetCode Company Finder",
+"version": "1.0",
+"description": "Shows companies where the current LeetCode problem appeared.",
+"permissions": ["activeTab", "storage"],
+"host_permissions": [
+"https://jaindevshrut.github.io/weekly_json_build/",
+"https://leetcode.com/",
+"https://logo.clearbit.com/",
+"https://img.logo.dev/",
+"https://favicons.githubusercontent.com/"
+],
+"background": {
+"service_worker": "background.js"
+},
+"content_scripts": [
+{
+"matches": ["https://leetcode.com/problems/*"],
+"js": ["content.js"]
+}
+],
+"action": {
+"default_title": "Company Finder",
+"default_popup": "popup.html"
+}
+}

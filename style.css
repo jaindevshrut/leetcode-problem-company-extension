@@ -1,0 +1,252 @@
+/* Main container styling */
+body {
+  width: 380px;
+  min-height: 200px;
+  max-height: 450px;
+  margin: 0;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: linear-gradient(135deg, #2c3e50 0%, #000000 50%, #34495e 100%);
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Header styling */
+h2 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Company list container */
+#companyList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+/* Custom scrollbar for the list */
+#companyList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#companyList::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+#companyList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 3px;
+}
+
+#companyList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* Individual company list item */
+.company-item {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
+  min-height: 36px;
+}
+
+/* Company logo styling */
+.company-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1px;
+  flex-shrink: 0;
+}
+
+/* Fallback icon for companies without logos */
+.company-fallback-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 10px;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Enhanced fallback icon on hover */
+.company-item:hover .company-fallback-icon {
+  background: linear-gradient(145deg, #ffffff, #f1f3f4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+/* Company name styling */
+.company-name {
+  flex: 1;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Rank badge for top companies */
+.rank-badge {
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  color: #333;
+  padding: 1px 4px;
+  border-radius: 8px;
+  font-size: 8px;
+  font-weight: bold;
+  flex-shrink: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.rank-badge.top-rank {
+  background: linear-gradient(45deg, #ffd700, #ffed4e);
+  box-shadow: 0 1px 2px rgba(255, 215, 0, 0.3);
+}
+
+/* Hover effect for company items */
+.company-item:hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.company-item:hover .company-logo {
+  transform: scale(1.05);
+}
+
+/* Empty state and not found message */
+#notFound,
+#companyList:empty::after {
+  content: "No companies found for this problem.";
+  display: block;
+  text-align: center;
+  padding: 30px 20px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  grid-column: 1 / -1;
+}
+
+#notFound {
+  display: none;
+}
+
+/* Company count indicator */
+#companyList:not(:empty)::before {
+  content: attr(data-count) " companies found";
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 400;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  grid-column: 1 / -1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Top companies highlighting - accounting for the count indicator as first child */
+.company-item:nth-child(3),
+.company-item:nth-child(4),
+.company-item:nth-child(5) {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  border-color: rgba(255, 255, 255, 0.25);
+  position: relative;
+}
+
+.company-item:nth-child(3):hover,
+.company-item:nth-child(4):hover,
+.company-item:nth-child(5):hover {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.15));
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Special styling for #1 company */
+.company-item:nth-child(2) {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* Loading state */
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.8);
+  grid-column: 1 / -1;
+}
+
+.loading::after {
+  content: '...';
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+/* Error state */
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 8px;
+  grid-column: 1 / -1;
+}
+
+@keyframes dots {
+  0%, 20% { color: rgba(255, 255, 255, 0.8); text-shadow: .25em 0 0 rgba(255, 255, 255, 0.8), .5em 0 0 rgba(255, 255, 255, 0.8); }
+  40% { color: white; text-shadow: .25em 0 0 rgba(255, 255, 255, 0.8), .5em 0 0 rgba(255, 255, 255, 0.8); }
+  60% { text-shadow: .25em 0 0 white, .5em 0 0 rgba(255, 255, 255, 0.8); }
+  80%, 100% { text-shadow: .25em 0 0 white, .5em 0 0 white; }
+}
+
+/* Responsive adjustments */
+@media (max-height: 600px) {
+  #companyList {
+    max-height: 280px;
+  }
+}
+
+/* Search/Filter section (if needed later) */
+.filter-section {
+  margin-bottom: 10px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
